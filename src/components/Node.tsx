@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import {
     Handle,
@@ -12,7 +12,7 @@ import {
 import DictionaryTable from "@/components/DictTable.tsx";
 
 
-const Node: React.FC<NodeProps<NodeType>> = (props) => {// тут бы я обернул в memo
+const Node: React.FC<NodeProps<NodeType>> = memo((props) => {// тут бы я обернул в memo
 
     const {
         data,
@@ -48,6 +48,6 @@ const Node: React.FC<NodeProps<NodeType>> = (props) => {// тут бы я обе
             <DictionaryTable data={data.values}/>
         </div>
     )
-}
+})
 
 export default Node;

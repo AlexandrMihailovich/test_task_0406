@@ -10,6 +10,7 @@ import {
     type NodeType,
     type EdgeType
 } from "@/schemas";
+import { useCallback } from "react";
 
 
 export const useGraph = () => {
@@ -18,13 +19,13 @@ export const useGraph = () => {
     const nodes = useAppSelector((state) => state.graph.nodes);
     const edges = useAppSelector((state) => state.graph.edges);
 
-    const setNodes = (newNodes: NodeType[]) => {// а вот тут следовало использотаь useCallback
+    const setNodes = useCallback((newNodes: NodeType[]) => {
         dispatch(setNodesAction(newNodes));
-    };
+    }, []);
 
-    const setEdges = (newEdges: EdgeType[]) => {// и тут тоже
+    const setEdges = useCallback((newEdges: EdgeType[]) => {
         dispatch(setEdgesAction(newEdges));
-    };
+    }, []);
 
     return {
         nodes,

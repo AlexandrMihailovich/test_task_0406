@@ -79,23 +79,21 @@ function App() {
 
             setEdges(newEdges);
 
-        }, [edges, nodes, setEdges, setNodes],// setEdges, setNodes постоянно пересоздаются. Только накладные расходы
+        }, [edges, nodes],
     );
 
     const onNodesChangeInternal = useCallback((changes: NodeChange<NodeType>[]) => {
         const changedNodes = applyNodeChanges(changes, nodes);
         setNodes(changedNodes);
     }, [
-        nodes,
-        setNodes// тоже самое, пересоздатся каждый раз
+        nodes
     ]);
 
     const onEdgesChangeInternal = useCallback((changes: EdgeChange<EdgeType>[]) => {
         const changedEdges = applyEdgeChanges(changes, edges);
         setEdges(changedEdges);
     }, [
-        edges,
-        setEdges// тоже самое, пересоздатся каждый раз
+        edges
     ]);
 
     const addNode = useCallback(() => {// вовсе не обязателен, так как используется в HTML Button, но не критично
@@ -111,7 +109,6 @@ function App() {
         setNodes([...nodes, newNode]);
     }, [
         nodes,
-        setNodes//setNodes - опять заставляет каждый раз всё пересоздавать
     ]);
 
     return (

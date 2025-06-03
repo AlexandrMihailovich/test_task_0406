@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type Props = {
     data: Record<string, number>;
@@ -16,7 +16,7 @@ const tdStyle: React.CSSProperties = {
     padding: "8px"
 };
 
-const DictionaryTable: React.FC<Props> = ({ data }) => {//тоже обернул бы в memo
+const DictionaryTable: React.FC<Props> = memo(({ data }) => {//тоже обернул бы в memo
     return (
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead>
@@ -35,7 +35,7 @@ const DictionaryTable: React.FC<Props> = ({ data }) => {//тоже оберну�
             </tbody>
         </table>
     );
-};
+});
 
 
 export default DictionaryTable;
