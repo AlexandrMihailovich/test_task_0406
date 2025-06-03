@@ -12,7 +12,33 @@ import {
 import DictionaryTable from "@/components/DictTable.tsx";
 
 
-const Node: React.FC<NodeProps<NodeType>> = memo((props) => {// тут бы я обернул в memo
+/**
+ * что бы исключить рендеринг контента ноды при её перемещение.
+ * Однако в данном случае это не существенно, так как разметки очень мало.
+ */
+const NodeContent: React.FC<{ data: NodeType['data'] }> = memo(({ data }) => {
+
+    return (
+        <>
+            <div style={{ marginBottom: "10px" }}>
+                <strong>{data.displayName}</strong>
+            </div>
+            <div>
+                <Handle
+                    type='target'
+                    position={Position.Left}
+                />
+                <Handle
+                    type='source'
+                    position={Position.Right}
+                />
+            </div>
+            <DictionaryTable data={data.values} />
+        </>
+    )
+})
+
+const Node: React.FC<NodeProps<NodeType>> = memo((props) => {
 
     const {
         data,
@@ -32,20 +58,7 @@ const Node: React.FC<NodeProps<NodeType>> = memo((props) => {// тут бы я �
                 transition: "box-shadow 0.2s, border 0.2s"
             }}
         >
-            <div style={{ marginBottom: "10px" }}>
-                <strong>{data.displayName}</strong>
-            </div>
-            <div>
-                <Handle
-                    type='target'
-                    position={Position.Left}
-                />
-                <Handle
-                    type='source'
-                    position={Position.Right}
-                />
-            </div>
-            <DictionaryTable data={data.values}/>
+            <NodeContent data={data} />
         </div>
     )
 })
