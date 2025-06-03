@@ -23,7 +23,8 @@ import FPSCounter from "@/components/FPSCounter.tsx";
 import Node from "@/components/Node.tsx";
 
 import {
-    useGraph
+    useGraph,
+    useRefCallback
 } from "@/hooks";
 
 import {
@@ -48,7 +49,7 @@ function App() {
         setEdges
     } = useGraph();
 
-    const onConnect = useCallback(
+    const onConnect = useRefCallback(
         (connection: Connection) => {
             const newEdges = addEdge<EdgeType>(connection, edges);
 
@@ -82,24 +83,20 @@ function App() {
 
             setEdges(newEdges);
 
-        }, [edges, nodes],
+        }
     );
 
-    const onNodesChangeInternal = useCallback((changes: NodeChange<NodeType>[]) => {
+    const onNodesChangeInternal = useRefCallback((changes: NodeChange<NodeType>[]) => {
         const changedNodes = applyNodeChanges(changes, nodes);
         setNodes(changedNodes);
-    }, [
-        nodes
-    ]);
+    });
 
-    const onEdgesChangeInternal = useCallback((changes: EdgeChange<EdgeType>[]) => {
+    const onEdgesChangeInternal = useRefCallback((changes: EdgeChange<EdgeType>[]) => {
         const changedEdges = applyEdgeChanges(changes, edges);
         setEdges(changedEdges);
-    }, [
-        edges
-    ]);
+    });
 
-    const addNode = useCallback(() => {// вовсе не обязателен, так как используется в HTML Button, но не критично
+    const addNode = useRefCallback(() => {// вовсе не обязателен, так как используется в HTML Button, но не критично
         const newNode: NodeType = {
             id: (nodes.length + 1).toString(),
             position: {x: Math.random() * 400, y: Math.random() * 400},
@@ -110,9 +107,7 @@ function App() {
             }
         };
         setNodes([...nodes, newNode]);
-    }, [
-        nodes,
-    ]);
+    });
 
     return (
         <div
