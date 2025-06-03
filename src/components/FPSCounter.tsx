@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const FPSCounter: React.FC = () => {
+const FPSCounter: React.FC = () => {// ну и счетчик в memo
     const [fps, setFps] = useState(0);
     const frameCount = useRef(0);
     const lastTime = useRef(performance.now());

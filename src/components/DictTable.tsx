@@ -16,7 +16,7 @@ const tdStyle: React.CSSProperties = {
     padding: "8px"
 };
 
-const DictionaryTable: React.FC<Props> = ({ data }) => {
+const DictionaryTable: React.FC<Props> = ({ data }) => {//тоже обернул бы в memo
     return (
         <table style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead>

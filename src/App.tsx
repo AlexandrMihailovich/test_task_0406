@@ -79,7 +79,7 @@ function App() {
 
             setEdges(newEdges);
 
-        }, [edges, nodes, setEdges, setNodes],
+        }, [edges, nodes, setEdges, setNodes],// setEdges, setNodes постоянно пересоздаются. Только накладные расходы
     );
 
     const onNodesChangeInternal = useCallback((changes: NodeChange<NodeType>[]) => {
@@ -87,7 +87,7 @@ function App() {
         setNodes(changedNodes);
     }, [
         nodes,
-        setNodes
+        setNodes// тоже самое, пересоздатся каждый раз
     ]);
 
     const onEdgesChangeInternal = useCallback((changes: EdgeChange<EdgeType>[]) => {
@@ -95,10 +95,10 @@ function App() {
         setEdges(changedEdges);
     }, [
         edges,
-        setEdges
+        setEdges// тоже самое, пересоздатся каждый раз
     ]);
 
-    const addNode = useCallback(() => {
+    const addNode = useCallback(() => {// вовсе не обязателен, так как используется в HTML Button, но не критично
         const newNode: NodeType = {
             id: (nodes.length + 1).toString(),
             position: {x: Math.random() * 400, y: Math.random() * 400},
@@ -111,7 +111,7 @@ function App() {
         setNodes([...nodes, newNode]);
     }, [
         nodes,
-        setNodes
+        setNodes//setNodes - опять заставляет каждый раз всё пересоздавать
     ]);
 
     return (

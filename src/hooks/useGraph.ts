@@ -18,11 +18,11 @@ export const useGraph = () => {
     const nodes = useAppSelector((state) => state.graph.nodes);
     const edges = useAppSelector((state) => state.graph.edges);
 
-    const setNodes = (newNodes: NodeType[]) => {
+    const setNodes = (newNodes: NodeType[]) => {// а вот тут следовало использотаь useCallback
         dispatch(setNodesAction(newNodes));
     };
 
-    const setEdges = (newEdges: EdgeType[]) => {
+    const setEdges = (newEdges: EdgeType[]) => {// и тут тоже
         dispatch(setEdgesAction(newEdges));
     };
 

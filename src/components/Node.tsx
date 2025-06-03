@@ -12,7 +12,7 @@ import {
 import DictionaryTable from "@/components/DictTable.tsx";
 
 
-const Node: React.FC<NodeProps<NodeType>> = (props) => {
+const Node: React.FC<NodeProps<NodeType>> = (props) => {// тут бы я обернул в memo
 
     const {
         data,
