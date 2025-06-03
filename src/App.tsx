@@ -36,6 +36,9 @@ import {
 } from "@/utils";
 
 
+
+const NODE_TYPES = {custom: Node}// лучше так, что бы создние нового объекта в ренедере не вызывало обнорвлений всего древа
+
 function App() {
 
     const {
@@ -125,7 +128,7 @@ function App() {
                     onNodesChange={onNodesChangeInternal}
                     onEdgesChange={onEdgesChangeInternal}
                     onConnect={onConnect}
-                    nodeTypes={{custom: Node}}
+                    nodeTypes={NODE_TYPES}//вот это это сразу не заметил - nodeTypes={{custom: Node}}
                     deleteKeyCode={"Delete"}
 
                 >
