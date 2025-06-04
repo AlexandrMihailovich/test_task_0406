@@ -8,7 +8,6 @@ services:
       - "9229:9229"
     volumes:
       - .:/app
-      # - /app/node_modules
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
@@ -17,13 +16,20 @@ services:
       - node 
       - ./node_modules/vite/bin/vite 
       - --host 
-      # - dev 
+
+  vite-prod:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=production
+    command: 
+      - npm
+      - run
+      - build 
 
   npm:
     image: node:18-alpine
     volumes:
        - .:/app
-      #  - /app/node_modules
     working_dir: /app
-    # command: 
-    #   -npm
