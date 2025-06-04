@@ -15,7 +15,7 @@ import {
     applyNodeChanges,
     applyEdgeChanges,
 
-    addEdge
+    addEdge,
 } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
 
@@ -125,7 +125,7 @@ function App() {
                     onConnect={onConnect}
                     nodeTypes={NODE_TYPES}//вот это это сразу не заметил - nodeTypes={{custom: Node}}
                     deleteKeyCode={"Delete"}
-
+                    onlyRenderVisibleElements
                 >
                     <Panel>
                         <FPSCounter/>
